@@ -1,0 +1,6 @@
+nghengu
+kass
+pet
+cat
+dog
+bird
