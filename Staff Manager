@@ -1,0 +1,123 @@
+import java.io.*;
+
+class Manager
+{
+    private int maxLuong;
+    private int luongCoBan;
+    private int heSLBD;
+    private int tang;
+
+    
+    public Manager(int m , int lu, int he , int ta)
+    {
+        this.maxLuong = m;
+        this.luongCoBan = lu;
+        this.heSLBD = he;
+        this.tang = ta;
+    }
+
+
+    public int getmaxLuong()
+    {
+        return this.maxLuong;
+    }
+
+    public int getluongcoban()
+    {
+        return this.luongCoBan;
+    }
+
+    public int gethslbd()
+    {
+        return this.heSLBD;
+    }
+
+    public int getT()
+    {
+        return this.tang;
+    }
+}
+
+class estaff
+{
+    private String name;
+    private int _year;
+    private int y_work;
+
+    public estaff(String n, int y ,int w)
+    {
+        this.name = n;
+        this._year = y;
+        this.y_work = w;
+    }
+
+    public String getName()
+    {
+        return this.name;
+    }
+
+    public int getYear()
+    {
+        return this._year;
+    }
+
+    public int getWork()
+    {
+        return this.y_work;
+    }
+
+
+}
+
+public class Main {
+    public static void main(String[] args)
+    {
+        InputStreamReader r = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(r);
+
+        try
+        {
+            int n = Integer.parseInt(br.readLine());
+            int luongm = Integer.parseInt(br.readLine());
+            int lcb = Integer.parseInt(br.readLine());
+            int heS = Integer.parseInt(br.readLine());
+            int t = Integer.parseInt(br.readLine());
+
+            Manager manager = new Manager(luongm, lcb, heS, t);
+            estaff[] staff = new estaff[n+1];
+            for( int i = 0 ; i < n ; i++)
+            {
+                String _n = br.readLine();
+                int y = Integer.parseInt(br.readLine());
+                int w = Integer.parseInt(br.readLine());
+                staff[i] = new estaff(_n,y ,w);
+
+            }
+            int sum = 0;
+            for( int i = 0 ; i < n; i++)
+            {
+                int hs = 0;
+                if(staff[i].getWork() % 5 ==0 )
+                {
+                    hs = staff[i].getWork()/5 - 1;
+                }
+                else
+                {
+                    hs = staff[i].getWork()/5;
+                }
+                int _luong = manager.getluongcoban()*manager.gethslbd() + manager.getluongcoban()*manager.getT()*hs;
+                if(_luong >= manager.getmaxLuong() ) _luong = manager.getmaxLuong();
+                sum += _luong;
+                System.out.print(staff[i].getName() + " " + staff[i].getYear() + " " + staff[i].getWork() + " " + _luong + " ");
+            }
+            System.out.print(sum);
+
+
+
+        }
+        catch(Exception e)
+        {
+
+        }
+    }
+}
